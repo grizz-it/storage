@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
  */
+
 namespace GrizzIt\Storage\Common;
 
 use ArrayAccess;
@@ -17,7 +19,7 @@ interface StorageInterface extends ArrayAccess, Traversable
      *
      * @return mixed
      */
-    public function get($key);
+    public function get(string | int $key): mixed;
 
     /**
      * Sets data on a specific key within the storage.
@@ -27,7 +29,7 @@ interface StorageInterface extends ArrayAccess, Traversable
      *
      * @return void
      */
-    public function set($key, $data): void;
+    public function set(string | int $key, mixed $data): void;
 
     /**
      * Removes data from a key within a storage.
@@ -36,7 +38,7 @@ interface StorageInterface extends ArrayAccess, Traversable
      *
      * @return void
      */
-    public function unset($key): void;
+    public function unset(string | int $key): void;
 
     /**
      * Checks whether the storage has data on this key.
@@ -45,7 +47,7 @@ interface StorageInterface extends ArrayAccess, Traversable
      *
      * @return bool
      */
-    public function has($key): bool;
+    public function has(string | int $key): bool;
 
     /**
      * Retrieves an array of keys from the storage.

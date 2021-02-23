@@ -1,8 +1,10 @@
 <?php
+
 /**
  * Copyright (C) GrizzIT, Inc. All rights reserved.
  * See LICENSE for license details.
  */
+
 namespace GrizzIt\Storage\Component;
 
 use GrizzIt\Storage\Common\StorageInterface;
@@ -17,7 +19,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @var array
      */
-    private $data;
+    private array $data;
 
     /**
      * Constructor
@@ -36,7 +38,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return mixed
      */
-    public function get($key)
+    public function get(string | int $key): mixed
     {
         if ($this->has($key)) {
             return $this->data[$key];
@@ -53,7 +55,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return void
      */
-    public function set($key, $data): void
+    public function set(string | int $key, mixed $data): void
     {
         $this->data[$key] = $data;
     }
@@ -65,7 +67,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return void
      */
-    public function unset($key): void
+    public function unset(string | int $key): void
     {
         unset($this->data[$key]);
     }
@@ -77,7 +79,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return bool
      */
-    public function has($key): bool
+    public function has(string | int $key): bool
     {
         return array_key_exists($key, $this->data);
     }
@@ -97,7 +99,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return bool
      */
-    public function offsetExists($offset): bool
+    public function offsetExists(mixed $offset): bool
     {
         return $this->has($offset);
     }
@@ -107,7 +109,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return mixed
      */
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->get($offset);
     }
@@ -118,7 +120,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return void
      */
-    public function offsetSet($offset, $value) : void
+    public function offsetSet(mixed $offset, mixed $value): void
     {
         $this->set($offset, $value);
     }
@@ -128,7 +130,7 @@ class ObjectStorage implements IteratorAggregate, StorageInterface
      *
      * @return void
      */
-    public function offsetUnset($offset) : void
+    public function offsetUnset(mixed $offset): void
     {
         $this->unset($offset);
     }
